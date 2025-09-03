@@ -6,7 +6,7 @@ export default function HeroSection() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-black text-white">    
 
-      <div className="flex flex-col items-center justify-center px-6 text-center">
+      <div className="flex flex-col items-center justify-center px-6 text-center pd-20">
 
         <div className="max-w-4xl mb-8">
           <h1 className="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent">
