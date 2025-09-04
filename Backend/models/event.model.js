@@ -6,35 +6,31 @@ const event = new mongoose.Schema(
       type: String,
       required: true,
     },
-
     description: {
       type: String,
       required: true,
     },
-
     participants: [
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
       },
     ],
-
+    invitedUsers: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
+      },
+    ],
     createdBy: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
     },
-
-    dateOptions: [
+    locations: [
       {
-        date: Date,
-        time: String,
-        voteCount: Number,
-        votedBy: [
-          {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "User",
-          },
-        ],
+        name: { type: String, required: true },
+        voteCount: { type: Number, default: 0 },
+        votedBy: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
       },
     ],
   },
