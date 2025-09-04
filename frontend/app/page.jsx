@@ -1,8 +1,12 @@
+"use client";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Calendar, Users, Vote } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 export default function HeroSection() {
+  const router = useRouter();
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-black text-white">
       <div className="flex flex-col items-center justify-center px-6 text-center pd-20">
@@ -21,6 +25,7 @@ export default function HeroSection() {
         <div className="flex flex-col sm:flex-row gap-4 mb-16">
           <Button
             size="lg"
+            onClick={() => router.push("/signup")}
             className="bg-slate-600 hover:bg-slate-500 text-white px-8 py-6 text-lg font-semibold border-0 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
           >
             Get Started

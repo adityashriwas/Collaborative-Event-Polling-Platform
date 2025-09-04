@@ -25,8 +25,10 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Calendar, Eye, EyeOff, Loader2, Check, X } from "lucide-react";
 import Link from "next/link";
 import { authAPI } from "../../../lib/api";
+import { useRouter } from "next/navigation";
 
 export default function Signup() {
+  const router = useRouter();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -91,6 +93,9 @@ export default function Signup() {
 
     try {
       const data = await authAPI.signup(formData);
+      if (data.success) {
+        router.push("/login");
+      }
     } catch (err) {
       setError(
         err?.response?.data?.message ||

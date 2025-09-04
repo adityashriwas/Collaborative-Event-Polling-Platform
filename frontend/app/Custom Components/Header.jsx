@@ -13,8 +13,6 @@ export default function Navbar() {
   const isAuthenticated = user;
   console.log(isAuthenticated);
 
-  const userName = user?.name || "Guest";
-
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   return (
@@ -57,7 +55,7 @@ export default function Navbar() {
                     variant="ghost"
                     size="sm"
                     className="text-slate-300 hover:text-white hover:bg-slate-700"
-                    onClick={logout} // ✅ context logout
+                    onClick={logout}
                   >
                     Logout
                   </Button>
@@ -110,11 +108,11 @@ export default function Navbar() {
                     Dashboard
                   </Link>
                   <Link
-                    href="/events/create"
+                    href="/events"
                     className="block px-3 py-2 text-slate-300 hover:text-white hover:bg-slate-700 rounded-md transition-colors"
                     onClick={() => setIsMenuOpen(false)}
                   >
-                    Create Event
+                    All Events
                   </Link>
                   <Link
                     href="/notifications"

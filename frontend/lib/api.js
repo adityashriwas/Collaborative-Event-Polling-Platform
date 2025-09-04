@@ -42,7 +42,7 @@ export const authAPI = {
     return res.json();
   },
 
-    getAllUsers: async (token) => {
+  getAllUsers: async (token) => {
     const res = await fetch(`${API_BASE}/api/v1/user/users`, {
       method: "GET",
       headers: {
@@ -68,7 +68,10 @@ export const authAPI = {
 export const eventsAPI = {
   getMyEvents: async (token) => {
     const res = await fetch(`${API_BASE}/api/v1/event/my-events`, {
-      headers: { Authorization: `Bearer ${token}` },
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
       credentials: "include",
     });
     return res.json();
@@ -124,11 +127,11 @@ export const eventsAPI = {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
+      credentials: "include",
       body: JSON.stringify({ eventId, userId }),
     });
     return res.json();
   },
-
 
   acceptInvite: async (eventId, token) => {
     const res = await fetch(`${API_BASE}/api/v1/event/accept-invite`, {
@@ -137,6 +140,7 @@ export const eventsAPI = {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
+      credentials: "include",
       body: JSON.stringify({ eventId }),
     });
     return res.json();
@@ -167,4 +171,3 @@ export const notificationsAPI = {
     return res.json();
   },
 };
-

@@ -12,6 +12,8 @@ import {
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
 import { authAPI, eventsAPI } from "@/lib/api";
+import toast from "react-hot-toast";
+import { Badge } from "@/components/ui/badge"
 
 const EventDetailsPage = () => {
   const { id } = useParams();
@@ -21,6 +23,7 @@ const EventDetailsPage = () => {
   const [selectedLocation, setSelectedLocation] = useState("");
   const [invitedUsers, setInvitedUsers] = useState([]);
   const [allUsers, setAllUsers] = useState([]);
+  const [participants, setParticipants] = useState([]);
 
   const fetchEvent = async () => {
     try {
@@ -28,6 +31,10 @@ const EventDetailsPage = () => {
       if (data?.event) {
         setEvent(data.event);
         setInvitedUsers(data.event.invitedUsers || []);
+        setParticipants(data.event.participants || []);
+        console.log(invitedUsers);
+        
+        setError("");
       } else {
         setError(data.message || "Failed to fetch event details");
       }
@@ -78,7 +85,8 @@ const EventDetailsPage = () => {
       const token = localStorage.getItem("token");
       await eventsAPI.inviteUser(event._id, userId, token);
       await fetchEvent();
-      alert("User invited successfully!");
+      setInvitedUsers((prev) => [...prev, userId]);
+      toast.success("User invited successfully!");
     } catch (err) {
       console.error("Invite failed:", err);
       setError("Failed to invite user");
@@ -123,10 +131,13 @@ const EventDetailsPage = () => {
                         onChange={() => setSelectedLocation(loc._id)}
                       />
                       <span>
-                        {loc.name} —{" "}
-                        <span className="font-semibold">{loc.voteCount}</span>{" "}
-                        votes
+                        {loc.name} — {" "}
+                        <Badge variant="secondary" className="ml-2">
+                          {loc.voteCount}{" "}
+                          votes
+                        </Badge>
                       </span>
+                      
                     </label>
                   ))}
                   <Button
@@ -166,7 +177,7 @@ const EventDetailsPage = () => {
                   </span>
                   <Button
                     variant="outline"
-                    className="text-slate-300 hover:text-white hover:bg-slate-700"
+                    className="text-slate-900 hover:text-white hover:bg-slate-700"
                     onClick={() => handleInvite(user._id)}
                     disabled={invitedUsers.includes(user._id)}
                   >
@@ -174,6 +185,35 @@ const EventDetailsPage = () => {
                   </Button>
                 </div>
               ))}
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card className="bg-slate-800/50 border-slate-700 backdrop-blur-sm max-w-2xl mx-auto">
+          <CardHeader>
+            <CardTitle className="text-2xl font-bold text-white">
+              Participating Users
+            </CardTitle>
+            <CardDescription className="text-slate-400">
+              Users who have joined this event
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-3">
+              {participants.length > 0 ? (
+                participants.map((user) => (
+                  <div
+                    key={user._id}
+                    className="flex items-center justify-between"
+                  >
+                    <span className="text-slate-300">
+                      {user._id} {user.email}
+                    </span>
+                  </div>
+                ))
+              ) : (
+                <p className="text-slate-400">No users have joined this event.</p>
+              )}
             </div>
           </CardContent>
         </Card>

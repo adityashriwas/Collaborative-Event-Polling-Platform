@@ -6,6 +6,7 @@ import path from "path";
 import connectDB from "./database/db.js";
 import userRoute from "./routes/user.route.js";
 import eventRoute from "./routes/event.route.js";
+import notificationRoute from "./routes/notification.route.js";
 
 dotenv.config();
 
@@ -37,6 +38,7 @@ app.use(cookieParser());
 //api routes
 app.use("/api/v1/user", userRoute);
 app.use("/api/v1/event", eventRoute);
+app.use("/api/v1/notifications", notificationRoute);
 
 app.get("/", (req, res) => {
   res.send("API is running ✅");

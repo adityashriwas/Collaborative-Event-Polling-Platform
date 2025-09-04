@@ -2,12 +2,14 @@
 
 import { createContext, useContext, useEffect, useState } from "react";
 import { authAPI } from "@/lib/api";
+import { useRouter } from "next/navigation";
 
 const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(authAPI.getCurrentUser());
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
 
   const signup = async (formData) => {
     setLoading(true);
@@ -34,6 +36,7 @@ export function AuthProvider({ children }) {
   const logout = async () => {
   try {
     await authAPI.logout();
+    router.push("/login");
   } catch (e) {
     console.error("Logout failed", e);
   } finally {

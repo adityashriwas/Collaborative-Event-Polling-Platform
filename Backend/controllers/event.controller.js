@@ -79,13 +79,19 @@ export const getMyEvents = async (req, res) => {
   try {
     const userId = req.id;
 
-    const events = await Event.find({ createdBy: userId });
+    const events = await Event.find({ createdBy: userId }).populate(
+      "createdBy",
+      "name email"
+    );
+
     return res.status(200).json({
+      success: true,
       events,
     });
   } catch (error) {
-    console.error(error);
+    console.error("Error in getMyEvents:", error);
     return res.status(500).json({
+      success: false,
       message: "Failed to retrieve events",
     });
   }
@@ -189,6 +195,11 @@ export const inviteUser = async (req, res) => {
       await event.save();
     }
 
+    if (!event.invitedUsers.includes(userId)) {
+      event.invitedUsers.push(userId);
+      await event.save();
+    }
+
     await createNotification(
       userId,
       `You have been invited to event: ${event.title}`,
@@ -204,7 +215,7 @@ export const inviteUser = async (req, res) => {
 export const acceptInvite = async (req, res) => {
   try {
     const { eventId } = req.body;
-    const userId = req.id; 
+    const userId = req.id;
 
     const event = await Event.findById(eventId);
     if (!event) return res.status(404).json({ message: "Event not found" });

@@ -11,7 +11,6 @@ import { Button } from "@/components/ui/button";
 import { Loader2, Calendar } from "lucide-react";
 import { eventsAPI } from "@/lib/api";
 import { useRouter } from "next/navigation";
-import Cookies from "js-cookie";
 
 const Dashboard = () => {
   const [events, setEvents] = useState([]);
@@ -24,13 +23,7 @@ const Dashboard = () => {
       setLoading(true);
       setError("");
       try {
-        const token = Cookies.get("token");
-        if (!token) {
-          setError("Unauthorized. Please log in again.");
-          setLoading(false);
-          return;
-        }
-
+        const token = localStorage.getItem("token");
         const data = await eventsAPI.getMyEvents(token);
         if (data.success) {
           setEvents(data.events || []);
@@ -64,7 +57,7 @@ const Dashboard = () => {
           {events.map((event) => (
             <Card
               key={event._id}
-              onClick={() => router.push(`/event/${event._id}`)}
+              onClick={() => router.push(`/events/${event._id}`)}
               className="bg-slate-800/50 border-slate-700 backdrop-blur-sm cursor-pointer hover:bg-slate-700/50 transition rounded-2xl"
             >
               <CardHeader>

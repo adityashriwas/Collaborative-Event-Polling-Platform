@@ -72,7 +72,7 @@ const EventsPage = () => {
               <CardContent>
                 <Button
                   onClick={(e) => {
-                    e.stopPropagation(); // avoid double navigation
+                    e.stopPropagation(); 
                     router.push(`/events/${event._id}`);
                   }}
                   className="w-full bg-slate-600 hover:bg-slate-500"

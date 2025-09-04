@@ -14,6 +14,6 @@ router.route("/register").post(register);
 router.route("/login").post(login);
 router.route("/logout").get(logout);
 router.route("/profile").get(isAuthenticated, getUserProfile);
-router.get("/users", getAllUsers);
+router.route("/users").get(isAuthenticated, getAllUsers);
 
 export default router;
