@@ -8,11 +8,11 @@ import { useAuth } from "@/lib/auth";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { user, logout } = useAuth(); 
+  const { user, logout } = useAuth();
 
   const isAuthenticated = user;
   console.log(isAuthenticated);
-  
+
   const userName = user?.name || "Guest";
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
@@ -21,7 +21,6 @@ export default function Navbar() {
     <nav className="bg-slate-900/95 backdrop-blur-sm border-b border-slate-800 sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex items-center justify-between h-16">
-          {/* Logo */}
           <Link
             href="/"
             className="flex items-center space-x-2 hover:opacity-80 transition-opacity"
@@ -30,7 +29,6 @@ export default function Navbar() {
             <span className="text-2xl font-bold text-white">EventPoll</span>
           </Link>
 
-          {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
             {isAuthenticated ? (
               <>
@@ -41,13 +39,19 @@ export default function Navbar() {
                   Dashboard
                 </Link>
                 <Link
-                  href="/events/create"
+                  href="/events"
                   className="text-slate-300 hover:text-white transition-colors"
                 >
-                  Create Event
+                  All Events
                 </Link>
 
-                {/* User Menu */}
+                <Link
+                  href="/notifications"
+                  className="text-slate-300 hover:text-white transition-colors"
+                >
+                  Notification
+                </Link>
+
                 <div className="flex items-center space-x-4">
                   <Button
                     variant="ghost"
@@ -76,7 +80,6 @@ export default function Navbar() {
             )}
           </div>
 
-          {/* Mobile Menu Button */}
           <div className="md:hidden">
             <Button
               variant="ghost"
@@ -112,6 +115,13 @@ export default function Navbar() {
                     onClick={() => setIsMenuOpen(false)}
                   >
                     Create Event
+                  </Link>
+                  <Link
+                    href="/notifications"
+                    className="block px-3 py-2 text-slate-300 hover:text-white hover:bg-slate-700 rounded-md transition-colors"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Notifications
                   </Link>
                   <div className="border-t border-slate-700 my-2"></div>
                   <div className="px-3 py-2">

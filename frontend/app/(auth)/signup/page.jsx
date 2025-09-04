@@ -38,7 +38,6 @@ export default function Signup() {
   const [error, setError] = useState("");
   const [agreeToTerms, setAgreeToTerms] = useState(false);
 
-  // Password validation
   const passwordRequirements = {
     minLength: formData.password.length >= 8,
     hasUpperCase: /[A-Z]/.test(formData.password),
@@ -92,7 +91,6 @@ export default function Signup() {
 
     try {
       const data = await authAPI.signup(formData);
-      // you could add redirect/toast here
     } catch (err) {
       setError(
         err?.response?.data?.message ||
@@ -111,7 +109,6 @@ export default function Signup() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-black flex items-center justify-center p-6">
       <div className="w-full max-w-md">
-        {/* Logo */}
         <div className="flex items-center justify-center mb-8">
           <Calendar className="h-10 w-10 text-slate-300 mr-3" />
           <span className="text-3xl font-bold text-white">EventPoll</span>
@@ -197,7 +194,6 @@ export default function Signup() {
                   </Button>
                 </div>
 
-                {/* Password Requirements */}
                 {formData.password && (
                   <div className="space-y-2 mt-3">
                     <div className="text-xs text-slate-400">
@@ -259,7 +255,6 @@ export default function Signup() {
                 </Select>
               </div>
 
-              {/* Terms and Conditions */}
               <div className="flex items-start space-x-2">
                 <Checkbox
                   id="terms"
@@ -290,7 +285,6 @@ export default function Signup() {
                 </Label>
               </div>
 
-              {/* Signup Button */}
               <Button
                 onClick={handleSubmit}
                 disabled={isLoading || !isPasswordValid || !agreeToTerms}
@@ -306,7 +300,6 @@ export default function Signup() {
                 )}
               </Button>
 
-              {/* Divider */}
               <div className="relative">
                 <div className="absolute inset-0 flex items-center">
                   <span className="w-full border-t border-slate-700" />
@@ -316,7 +309,6 @@ export default function Signup() {
                 </div>
               </div>
 
-              {/* Login Link */}
               <div className="text-center">
                 <p className="text-slate-400">
                   Already have an account?{" "}
@@ -332,7 +324,6 @@ export default function Signup() {
           </CardContent>
         </Card>
 
-        {/* Back to Home */}
         <div className="text-center mt-6">
           <Link
             href="/"

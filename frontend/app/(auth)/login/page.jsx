@@ -4,17 +4,24 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Calendar, Eye, EyeOff, Loader2 } from "lucide-react";
 import Link from "next/link";
 import { authAPI } from "../../../lib/api";
-
+import { useRouter } from "next/navigation";
 
 export default function Login() {
+  const router = useRouter();
   const [formData, setFormData] = useState({
     email: "",
-    password: ""
+    password: "",
   });
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -23,10 +30,10 @@ export default function Login() {
   const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
     console.log(formData);
-    
+
     if (error) setError("");
   };
 
@@ -37,6 +44,9 @@ export default function Login() {
 
     try {
       const data = await authAPI.login(formData);
+      if (data.success) {
+        router.push("/dashboard");
+      }
     } catch (err) {
       setError(err.message || "Invalid email or password");
     } finally {
@@ -65,7 +75,7 @@ export default function Login() {
               Sign in to your account to continue
             </CardDescription>
           </CardHeader>
-          
+
           <CardContent>
             <div className="space-y-6">
               {error && (
@@ -148,8 +158,8 @@ export default function Login() {
               <div className="text-center">
                 <p className="text-slate-400">
                   Don't have an account?{" "}
-                  <Link 
-                    href="/signup" 
+                  <Link
+                    href="/signup"
                     className="text-white hover:text-slate-300 font-semibold transition-colors"
                   >
                     Sign up
@@ -160,10 +170,9 @@ export default function Login() {
           </CardContent>
         </Card>
 
-        {/* Back to Home */}
         <div className="text-center mt-6">
-          <Link 
-            href="/" 
+          <Link
+            href="/"
             className="text-slate-400 hover:text-white transition-colors text-sm"
           >
             ← Back to Home
