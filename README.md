@@ -1,24 +1,24 @@
-# 🎉 Collaborative Event & Polling Platform
+# Collaborative Event & Polling Platform
 
 This is a full-stack project where users can **create events, suggest locations, vote for them, invite users**, and receive **notifications** when invited.  
 I built it to make group event planning simpler and interactive.
 
 ---
 
-## ✨ Features
+## Features
 
-- 🔐 **User Authentication**
+- **User Authentication**
   - Sign up, login, logout, profile  
-- 📅 **Event Management**
+- **Event Management**
   - Create, edit, delete events  
   - Add multiple location options  
-- ✅ **Polling System**
+- **Polling System**
   - Vote on event locations  
   - See vote counts update quickly  
-- 🤝 **Invitations**
+- **Invitations**
   - Event creators can invite users  
   - Invited users get notifications  
-- 🔔 **Notifications**
+- **Notifications**
   - Stored in MongoDB  
   - Displayed in frontend, mark as read  
 
@@ -37,10 +37,10 @@ I built it to make group event planning simpler and interactive.
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/yourusername/collaborative-event-platform.git
-cd collaborative-event-platform
+git clone https://github.com/adityashriwas/Collaborative-Event-Polling-Platform.git
+cd Collaborative-Event-Polling-Platform
 ```
-## Install dependencies
+### Install dependencies
 ```
 cd Backend
 npm install
@@ -48,15 +48,16 @@ cd ../frontend
 npm install
 ```
 
-## ▶️ Running Locally
+### ▶️ Running Locally
 ```
 cd Backend
 npm run dev
+
 cd frontend
 npm run dev
 ```
-## API Endpoints
-# Auth
+### API Endpoints
+#### Auth
 ```
 POST   /api/v1/user/register          → Register new user  
 POST   /api/v1/user/login             → Login  
@@ -64,7 +65,7 @@ GET    /api/v1/user/profile           → Get current user
 GET    /api/v1/user/users             → Get all users  
 GET    /api/v1/user/logout            → Logout  
 ```
-# Events
+#### Events
 ```
 POST   /api/v1/event                  → Create event  
 GET    /api/v1/event                  → Get all events  
@@ -76,8 +77,13 @@ POST   /api/v1/event/vote             → Vote for a location
 POST   /api/v1/event/invite           → Invite user to an event  
 POST   /api/v1/event/accept-invite    → Accept an invite  
 ```
-# Notifications
+#### Notifications
 ```
 GET    /api/v1/notifications          → Get notifications for current user  
 PATCH  /api/v1/notifications/:id/read → Mark notification as read  
 ```
+
+##Future Improvements
+- WebSockets for true real-time updates
+- Email notifications for invites
+- Better UI
