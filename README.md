@@ -217,3 +217,12 @@ If I had more time, I would add:
 5. **Context API > Redux**: For simple state management needs
 
 ---
+
+## some snapshots
+![Dashboard](./Assets/allevents.png)
+![Create Event](./Assets/createevent.png)
+![Event Details](./Assets/dashboard.png)
+![Vote](./Assets/eventdetails.png)
+![Notifications](./Assets/notifications.png)
+![Login](./Assets/login.png)
+![Signup](./Assets/signup.png)
