@@ -163,6 +163,16 @@ export const voteLocation = async (req, res) => {
     const event = await Event.findById(eventId);
     if (!event) return res.status(404).json({ message: "Event not found" });
 
+    const isInvited =
+      event.invitedUsers.some((u) => u.toString() === userId) ||
+      event.createdBy.toString() === userId;
+
+    if (!isInvited) {
+      return res
+        .status(403)
+        .json({ message: "You are not invited to vote in this event" });
+    }
+
     const location = event.locations.id(locationId);
     if (!location)
       return res.status(404).json({ message: "Location not found" });
