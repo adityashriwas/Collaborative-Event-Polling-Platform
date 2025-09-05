@@ -1,9 +1,0 @@
-{
-    "title" : "event 1",
-    "description": "event 1 description",
-    "participants": [],
-    "createdBy": "68b7c0e19e215667683b6b1a",
-    "dateOptions": []
-}
-
-need to update my-events
