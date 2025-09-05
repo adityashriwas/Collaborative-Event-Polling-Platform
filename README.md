@@ -128,6 +128,35 @@ npm i express@4.21.1
 3. Auth context provides user state globally
 4. Logout clears token and resets state
 
+## API Endpoints
+
+### Auth
+```
+POST   /api/v1/user/register          → Register new user  
+POST   /api/v1/user/login             → Login  
+GET    /api/v1/user/profile           → Get current user  
+GET    /api/v1/user/users             → Get all users  
+GET    /api/v1/user/logout            → Logout  
+```
+### Events
+```
+POST   /api/v1/event                  → Create event  
+GET    /api/v1/event                  → Get all events  
+GET    /api/v1/event/my-events        → Get events created by logged-in user  
+GET    /api/v1/event/:id              → Get single event  
+PATCH  /api/v1/event/:id              → Edit event  
+DELETE /api/v1/event/:id              → Delete event
+POST   /api/v1/event/vote             → Vote for a location
+POST   /api/v1/event/invite           → Invite user to an event  
+POST   /api/v1/event/accept-invite    → Accept an invite  
+```
+### Notifications
+```
+GET    /api/v1/notifications          → Get notifications for current user  
+PATCH  /api/v1/notifications/:id/read → Mark notification as read  
+```
+
+
 ## 🎨 Design Philosophy
 
 I went with a **dark slate theme** because:
