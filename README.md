@@ -6,6 +6,7 @@ A full-stack MERN application that simplifies event planning through collaborati
 
 - **Frontend**: [https://collaborative-event-polling-platfor.vercel.app/](https://collaborative-event-polling-platfor.vercel.app/)
 - **Backend API**: [https://collaborative-event-polling-platform.onrender.com](https://collaborative-event-polling-platform.onrender.com)
+- **Postman Public Collection**: [Link](https://www.postman.com/avionics-technologist-15558436/workspace/public/collection/33901863-0ffe7ade-ac0e-4c50-9414-346676bf30f4?action=share&creator=33901863)
 
 ## 🛠️ Tech Stack
 
