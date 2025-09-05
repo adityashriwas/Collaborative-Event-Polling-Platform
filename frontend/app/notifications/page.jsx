@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { notificationsAPI } from "@/lib/api";
 import { Button } from "@/components/ui/button";
+import ProtectedRoute from "../Custom Components/ProtectedRoute";
 
 const Notifications = () => {
   const [notifications, setNotifications] = useState([]);
@@ -25,6 +26,7 @@ const Notifications = () => {
   }, []);
 
   return (
+    <ProtectedRoute>
     <div className="bg-slate-800 p-4 shadow-md min-h-screen">
       <h2 className="text-xl font-bold text-white mb-3">Notifications</h2>
       {notifications.length === 0 ? (
@@ -53,6 +55,7 @@ const Notifications = () => {
         </ul>
       )}
     </div>
+    </ProtectedRoute>
   );
 };
 

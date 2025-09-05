@@ -26,6 +26,7 @@ import { Calendar, Eye, EyeOff, Loader2, Check, X } from "lucide-react";
 import Link from "next/link";
 import { authAPI } from "../../../lib/api";
 import { useRouter } from "next/navigation";
+import AuthRedirect from "@/app/Custom Components/AuthRedirect";
 
 export default function Signup() {
   const router = useRouter();
@@ -112,6 +113,7 @@ export default function Signup() {
   };
 
   return (
+    <AuthRedirect>
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-black flex items-center justify-center p-6">
       <div className="w-full max-w-md">
         <div className="flex items-center justify-center mb-8">
@@ -339,5 +341,7 @@ export default function Signup() {
         </div>
       </div>
     </div>
+    </AuthRedirect>
   );
 }
+

@@ -11,6 +11,7 @@ import { Button } from "@/components/ui/button";
 import { Loader2, Calendar } from "lucide-react";
 import { eventsAPI } from "@/lib/api";
 import { useRouter } from "next/navigation";
+import ProtectedRoute from "@/app/Custom Components/ProtectedRoute";
 
 const Dashboard = () => {
   const [events, setEvents] = useState([]);
@@ -41,8 +42,9 @@ const Dashboard = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-black text-white p-6">
-      <h1 className="text-4xl font-bold mb-8">My Dashboard</h1>
+    <ProtectedRoute>
+      <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-black text-white p-6">
+        <h1 className="text-4xl font-bold mb-8">My Dashboard</h1>
 
       {loading ? (
         <div className="flex justify-center items-center h-40">
@@ -88,6 +90,7 @@ const Dashboard = () => {
         </Button>
       </div>
     </div>
+    </ProtectedRoute>
   );
 };
 

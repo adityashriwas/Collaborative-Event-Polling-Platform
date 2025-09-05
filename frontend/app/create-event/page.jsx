@@ -13,6 +13,7 @@ import { Button } from "@/components/ui/button";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Loader2, PlusCircle, Trash2 } from "lucide-react";
 import { eventsAPI } from "@/lib/api";
+import ProtectedRoute from "../Custom Components/ProtectedRoute";
 
 const Page = () => {
   const [formData, setFormData] = useState({
@@ -71,6 +72,7 @@ const Page = () => {
   };
 
   return (
+    <ProtectedRoute>
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-black text-white p-6">
       <h1 className="text-4xl font-bold mb-6">Create Event</h1>
 
@@ -176,6 +178,7 @@ const Page = () => {
         </CardContent>
       </Card>
     </div>
+    </ProtectedRoute>
   );
 };
 
